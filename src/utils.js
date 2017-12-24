@@ -19,11 +19,51 @@ export const createTableArr = (cellsPerRow, numberOfRows) => {
   return output;
 }
 
+//Get neigbhor cells value
+const getNeigbhorCells = (table, rowIndex, rowArr, cellIndex) => {
+  let bottomCell, bottomRightCell, bottomLeftCell;
+  let topCell, topRightCell, topLeftCell;
+
+    //Bottom cells
+    if (table[rowIndex + 1] === undefined) {
+      bottomCell = 0;
+      bottomRightCell = 0;
+      bottomLeftCell = 0;
+    } else {
+      bottomCell = table[rowIndex+1][cellIndex] || 0;
+      bottomRightCell = table[rowIndex+1][cellIndex+1] || 0;
+      bottomLeftCell = table[rowIndex+1][cellIndex-1] || 0;
+    }
+
+    //Top cells
+    if (table[rowIndex - 1] === undefined) {
+      topCell = 0;
+      topRightCell = 0;
+      topLeftCell = 0;
+    } else {
+      topCell = table[rowIndex-1][cellIndex] || 0;
+      topLeftCell = table[rowIndex-1][cellIndex-1] || 0;
+      topRightCell = table[rowIndex-1][cellIndex+1] || 0;
+    }
+
+    let leftCell = rowArr[cellIndex - 1] || 0;
+    let rightCell = rowArr[cellIndex + 1] || 0;
+
+    //From left to right
+    return [topLeftCell, topCell, topRightCell, bottomLeftCell, bottomCell, bottomRightCell, leftCell, rightCell]
+}
+
 //Map a 2d array
-export const map2DArr = (arr) => {
-  arr.map((row, rowIndex, table) => {
-    return row.map((cell, cellIndex) => {
-      return console.log(table[rowIndex+1]);
+export const getNextBoard = (arr) => {
+  return arr.map((row, rowIndex, table) => {
+    return row.map((cell, cellIndex, rowArr) => {
+      const neighborCells = getNeigbhorCells(table, rowIndex, rowArr, cellIndex);
+      const numOflivingNeighbor = neighborCells.filter(e => e === 1).length;
+
+
+      //Ternary giving the next state of each cell depending on Game of life rules
+      return cell === 0 && numOflivingNeighbor === 3 ? 1 :
+      cell === 1 && (numOflivingNeighbor === 2 || numOflivingNeighbor === 3) ? 1 : 0;
     });
   });
 }
