@@ -12,7 +12,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      board: createTableArr(30,30),
+      board: createTableArr(50,50),
       timer: null,
       isRunning: true,
       runSpeed: 100 //Milliseconds, between 500 and 5000

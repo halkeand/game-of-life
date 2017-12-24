@@ -4,7 +4,7 @@ const  Board = (props) => {
     const { board } = props;
     return (
       <main className="board-container">
-        <table>
+        <table className="board">
           <tbody>
           {
             board.map(row => {
@@ -13,9 +13,7 @@ const  Board = (props) => {
                   {
                     row.map(num => {
                       return (
-                        <td>
-                          {num}
-                        </td>
+                        <td className={num === 1 ? 'living-cell' : 'dead-cell'}></td>
                       )
                     })
                   }
