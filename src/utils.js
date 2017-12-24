@@ -49,7 +49,6 @@ const getNeigbhorCells = (table, rowIndex, rowArr, cellIndex) => {
     let leftCell = rowArr[cellIndex - 1] || 0;
     let rightCell = rowArr[cellIndex + 1] || 0;
 
-    //From left to right
     return [topLeftCell, topCell, topRightCell, bottomLeftCell, bottomCell, bottomRightCell, leftCell, rightCell]
 }
 
@@ -59,7 +58,6 @@ export const getNextBoard = (arr) => {
     return row.map((cell, cellIndex, rowArr) => {
       const neighborCells = getNeigbhorCells(table, rowIndex, rowArr, cellIndex);
       const numOflivingNeighbor = neighborCells.filter(e => e === 1).length;
-
 
       //Ternary giving the next state of each cell depending on Game of life rules
       return cell === 0 && numOflivingNeighbor === 3 ? 1 :
