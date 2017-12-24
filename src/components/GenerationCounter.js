@@ -1,9 +1,9 @@
 import React from 'react';
 
 const GenerationCounter = props => {
-  const {genCounterValue} = props
+  const {generatorCounter} = props
   return (
-    <p>Generations : {genCounterValue || '0'}</p>
+    <p>Generations : {generatorCounter || '0'}</p>
   )
 }
 

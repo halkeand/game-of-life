@@ -3,12 +3,12 @@ import Button from './Button';
 import GenerationCounter from './GenerationCounter';
 
 const ControlPanel = props => {
-  const { isRunning, handleRunClick } = props;
+  const { isRunning, handleRunClick, generatorCounter } = props;
   return (
     <section className="control-panel">
       <Button textValue={isRunning ? "Pause" : "Run"} onClick={handleRunClick}/>
       <Button textValue="Clear board"/>
-      <GenerationCounter/>
+      <GenerationCounter generatorCounter={generatorCounter}/>
     </section>
   )
 }

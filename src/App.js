@@ -15,8 +15,8 @@ class App extends Component {
       board: createTableArr(50,50),
       timer: null,
       isRunning: true,
-      runSpeed: 100 //Milliseconds, between 500 and 5000
-
+      runSpeed: 100, //Milliseconds, between 500 and 5000
+      generatorCounter: 0
     }
   }
 
@@ -37,7 +37,8 @@ class App extends Component {
 
   setNextBoardToState() {
     this.setState(prevState => ({
-      board: getNextBoard(prevState.board)
+      board: getNextBoard(prevState.board),
+      generatorCounter: prevState.generatorCounter + 1
     }))
   }
 
@@ -55,11 +56,12 @@ class App extends Component {
 
 
   render() {
-    const { board, isRunning } = this.state;
+    const { board, isRunning, generatorCounter } = this.state;
 
     return (
       <div className="App">
         <ControlPanel
+          generatorCounter={generatorCounter}
           isRunning={isRunning}
           handleRunClick={this.handleRunClick}/>
         <Board board={board}/>
