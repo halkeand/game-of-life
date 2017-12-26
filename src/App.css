@@ -6,6 +6,7 @@ body {
 
 .board {
   border-collapse: collapse;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.1)
 }
 .App td {
   min-width: 1%;

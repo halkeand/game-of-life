@@ -16,7 +16,9 @@ class App extends Component {
       timer: null,
       isRunning: true,
       runSpeed: 100, //Milliseconds, between 500 and 5000
-      generatorCounter: 0
+      generatorCounter: 0,
+      columnsNum: 50,
+      rowsNum: 50
     }
   }
 
@@ -26,7 +28,7 @@ class App extends Component {
     clearInterval(this.state.timer);
 
       this.setState(prevState => ({
-        board: createTableArr(50, 50, 'with empty cells'),
+        board: createTableArr(prevState.columnsNum, prevState.rowsNum, 'with empty cells'),
         isRunning: false,
         generatorCounter: 0
       }))
@@ -48,7 +50,7 @@ class App extends Component {
 
   handleGetRandomBoard = () => {
     this.setState(prevState => ({
-      board: createTableArr(50, 50, 'random'),
+      board: createTableArr(prevState.columnsNum, prevState.rowsNum, 'random'),
       generatorCounter: 0
     }))
 
@@ -59,12 +61,39 @@ class App extends Component {
     let newBoard = this.state.board;
     //We search for the right cell in the board and give it a status of living cell or dead cell if she already live
     let cell = newBoard[clickedCellLocation[0]][clickedCellLocation[1]];
-    
+
     cell === 0 ? newBoard[clickedCellLocation[0]][clickedCellLocation[1]] = 1 :
     newBoard[clickedCellLocation[0]][clickedCellLocation[1]] = 0;
 
     this.setState(prevState => ({
       board: newBoard
+    }))
+  }
+
+
+  //Sizes of the Board
+  handleLargeSize = () => {
+    this.setState(prevState => ({
+      board: createTableArr(50, 50, 'random'),
+      columnsNum: 50,
+      rowsNum: 50
+    }))
+  }
+
+  handleMediumSize = () => {
+    console.log('tgd');
+    this.setState(prevState => ({
+      board: createTableArr(30, 30, 'random'),
+      columnsNum: 30,
+      rowsNum: 30
+    }))
+  }
+
+  handleSmallSize = () => {
+    this.setState(prevState => ({
+      board: createTableArr(10, 10, 'random'),
+      columnsNum: 10,
+      rowsNum: 10
     }))
   }
 
@@ -96,9 +125,14 @@ class App extends Component {
         <ControlPanel
           generatorCounter={generatorCounter}
           isRunning={isRunning}
+
           handleRunClick={this.handleRunClick}
           handleClearBoard={this.handleClearBoard}
-          handleGetRandomBoard={this.handleGetRandomBoard}/>
+          handleGetRandomBoard={this.handleGetRandomBoard}
+
+          handleLargeSize={this.handleLargeSize}
+          handleMediumSize={this.handleMediumSize}
+          handleSmallSize={this.handleSmallSize}/>
         <Board
           board={board}
           handleCellClick={this.handleCellClick}/>
