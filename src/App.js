@@ -147,6 +147,7 @@ class App extends Component {
         <Board
           board={board}
           handleCellClick={this.handleCellClick}/>
+          <footer><p>Source code available on <a  target="blank" href="https://github.com/halkeand/game-of-life">Github</a></p></footer>
       </div>
     );
   }
