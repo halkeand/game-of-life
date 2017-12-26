@@ -21,7 +21,9 @@ class App extends Component {
   }
 
   handleClearBoard = (params) => {
-    clearInterval(this.state.timer)
+    //Stop the board next state calculation
+    clearInterval(this.state.timer);
+
       this.setState(prevState => ({
         board: createTableArr(50, 50, 'with empty cells'),
         isRunning: false,
@@ -36,10 +38,18 @@ class App extends Component {
       isRunning: !prevState.isRunning
     }))
 
-    //If the timer is runnign we clear it otherwise we reset it
+    //If the timer is running we clear it otherwise we reset it
     isRunning ? clearInterval(this.state.timer) : this.setState(prevState => ({
       timer: setInterval(this.setNextBoardToState.bind(this), runSpeed)
     }))
+  }
+
+  handleGetRandomBoard = () => {
+    this.setState(prevState => ({
+      board: createTableArr(50, 50, 'random'),
+      generatorCounter: 0
+    }))
+
   }
 
 
@@ -72,7 +82,8 @@ class App extends Component {
           generatorCounter={generatorCounter}
           isRunning={isRunning}
           handleRunClick={this.handleRunClick}
-          handleClearBoard={this.handleClearBoard}/>
+          handleClearBoard={this.handleClearBoard}
+          handleGetRandomBoard={this.handleGetRandomBoard}/>
         <Board board={board}/>
       </div>
     );
