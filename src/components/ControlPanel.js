@@ -12,11 +12,13 @@ const ControlPanel = props => {
         <Button textValue="Get random board" onClick={handleGetRandomBoard}/>
         <GenerationCounter generatorCounter={generatorCounter}/>
       </div>
-      <div>
-        <Button textValue="Little size" onClick={handleSmallSize}/>
-        <Button textValue="Medium size" onClick={handleMediumSize}/>
-        <Button textValue="Large size" onClick={handleLargeSize}/>
-        <label>Run speed (Ms), hit the pause/run button to see the change<input type="number" value={runSpeed} onChange={handleRunSpeedChange}/></label>
+      <div className="size-and-runspeed">
+        <div>
+          <Button textValue="Little size" onClick={handleSmallSize}/>
+          <Button textValue="Medium size" onClick={handleMediumSize}/>
+          <Button textValue="Large size" onClick={handleLargeSize}/>
+        </div>
+        <label>Run speed (Ms), hit the pause/run button to see the change <input type="number" value={runSpeed} onChange={handleRunSpeedChange}/></label>
       </div>
     </section>
   )

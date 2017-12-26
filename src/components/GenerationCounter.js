@@ -3,7 +3,7 @@ import React from 'react';
 const GenerationCounter = props => {
   const {generatorCounter} = props
   return (
-    <p>Generations : {generatorCounter || '0'}</p>
+    <p className="generation-counter">Generations : {generatorCounter || '0'}</p>
   )
 }
 
