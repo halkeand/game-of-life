@@ -1,7 +1,7 @@
 import React from 'react';
 // import {getArrToNum} from '../utils'
 const  Board = (props) => {
-    const { board } = props;
+    const { board, handleCellClick } = props;
     return (
       <main className="board-container">
         <table className="board">
@@ -14,6 +14,8 @@ const  Board = (props) => {
                     row.map((num, cellIndex) => {
                       return (
                         <td
+                          id={`${rowIndex}-${cellIndex}`}
+                          onClick={handleCellClick}
                           key={`row-${cellIndex}`}
                           className={num === 1 ? 'living-cell' : 'dead-cell'}></td>
                       )

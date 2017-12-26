@@ -20,6 +20,7 @@ class App extends Component {
     }
   }
 
+
   handleClearBoard = (params) => {
     //Stop the board next state calculation
     clearInterval(this.state.timer);
@@ -30,6 +31,7 @@ class App extends Component {
         generatorCounter: 0
       }))
   }
+
 
   handleRunClick = () => {
     const { isRunning, runSpeed} = this.state;
@@ -43,6 +45,7 @@ class App extends Component {
     }))
   }
 
+
   handleGetRandomBoard = () => {
     this.setState(prevState => ({
       board: createTableArr(50, 50, 'random'),
@@ -51,6 +54,19 @@ class App extends Component {
 
   }
 
+  handleCellClick = (e) => {
+    let clickedCellLocation = e.target.id.split('-')
+    let newBoard = this.state.board;
+    //We search for the right cell in the board and give it a status of living cell or dead cell if she already live
+    let cell = newBoard[clickedCellLocation[0]][clickedCellLocation[1]];
+    
+    cell === 0 ? newBoard[clickedCellLocation[0]][clickedCellLocation[1]] = 1 :
+    newBoard[clickedCellLocation[0]][clickedCellLocation[1]] = 0;
+
+    this.setState(prevState => ({
+      board: newBoard
+    }))
+  }
 
   setNextBoardToState() {
     this.setState(prevState => ({
@@ -83,7 +99,9 @@ class App extends Component {
           handleRunClick={this.handleRunClick}
           handleClearBoard={this.handleClearBoard}
           handleGetRandomBoard={this.handleGetRandomBoard}/>
-        <Board board={board}/>
+        <Board
+          board={board}
+          handleCellClick={this.handleCellClick}/>
       </div>
     );
   }
