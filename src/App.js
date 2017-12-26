@@ -37,7 +37,6 @@ class App extends Component {
     this.setState(prevState => ({
       isRunning: !prevState.isRunning
     }))
-
     //If the timer is running we clear it otherwise we reset it
     isRunning ? clearInterval(this.state.timer) : this.setState(prevState => ({
       timer: setInterval(this.setNextBoardToState.bind(this), runSpeed)

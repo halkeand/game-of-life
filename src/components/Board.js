@@ -7,13 +7,15 @@ const  Board = (props) => {
         <table className="board">
           <tbody>
           {
-            board.map(row => {
+            board.map((row,rowIndex) => {
               return (
-                <tr>
+                <tr key={`row-${rowIndex}`}>
                   {
-                    row.map(num => {
+                    row.map((num, cellIndex) => {
                       return (
-                        <td className={num === 1 ? 'living-cell' : 'dead-cell'}></td>
+                        <td
+                          key={`row-${cellIndex}`}
+                          className={num === 1 ? 'living-cell' : 'dead-cell'}></td>
                       )
                     })
                   }
