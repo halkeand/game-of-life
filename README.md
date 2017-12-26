@@ -1,1 +1,1 @@
-##Game of life challenge from freeCodeCamp
+Game of life challenge from freeCodeCamp
