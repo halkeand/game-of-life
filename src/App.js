@@ -15,7 +15,7 @@ class App extends Component {
       board: createTableArr(50, 50, 'random'),
       timer: null,
       isRunning: true,
-      runSpeed: 100, //Milliseconds, between 500 and 5000
+      runSpeed: 1000, //Milliseconds
       generatorCounter: 0,
       columnsNum: 50,
       rowsNum: 50
@@ -97,6 +97,15 @@ class App extends Component {
     }))
   }
 
+
+  handleRunSpeedChange = (e) => {
+    let val = (e.target.value);
+
+    this.setState(prevState => ({
+      runSpeed: val
+    }))
+  }
+
   setNextBoardToState() {
     this.setState(prevState => ({
       board: getNextBoard(prevState.board),
@@ -118,14 +127,16 @@ class App extends Component {
 
 
   render() {
-    const { board, isRunning, generatorCounter } = this.state;
+    const { board, isRunning, generatorCounter, runSpeed } = this.state;
 
     return (
       <div className="App">
         <ControlPanel
           generatorCounter={generatorCounter}
           isRunning={isRunning}
+          runSpeed={runSpeed}
 
+          handleRunSpeedChange={this.handleRunSpeedChange}
           handleRunClick={this.handleRunClick}
           handleClearBoard={this.handleClearBoard}
           handleGetRandomBoard={this.handleGetRandomBoard}

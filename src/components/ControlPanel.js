@@ -3,7 +3,7 @@ import Button from './Button';
 import GenerationCounter from './GenerationCounter';
 
 const ControlPanel = props => {
-  const { isRunning, handleRunClick, generatorCounter, handleClearBoard, handleGetRandomBoard, handleSmallSize, handleMediumSize, handleLargeSize } = props;
+  const { handleRunSpeedChange, runSpeed, isRunning, handleRunClick, generatorCounter, handleClearBoard, handleGetRandomBoard, handleSmallSize, handleMediumSize, handleLargeSize } = props;
   return (
     <section className="control-panel">
       <div>
@@ -16,6 +16,7 @@ const ControlPanel = props => {
         <Button textValue="Little size" onClick={handleSmallSize}/>
         <Button textValue="Medium size" onClick={handleMediumSize}/>
         <Button textValue="Large size" onClick={handleLargeSize}/>
+        <label>Run speed (Ms), hit the pause/run button to see the change<input type="number" value={runSpeed} onChange={handleRunSpeedChange}/></label>
       </div>
     </section>
   )
