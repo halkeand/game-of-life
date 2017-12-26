@@ -12,7 +12,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      board: createTableArr(50,50),
+      board: createTableArr(50, 50, 'random'),
       timer: null,
       isRunning: true,
       runSpeed: 100, //Milliseconds, between 500 and 5000
@@ -20,6 +20,14 @@ class App extends Component {
     }
   }
 
+  handleClearBoard = (params) => {
+    clearInterval(this.state.timer)
+      this.setState(prevState => ({
+        board: createTableArr(50, 50, 'with empty cells'),
+        isRunning: false,
+        generatorCounter: 0
+      }))
+  }
 
   handleRunClick = () => {
     const { isRunning, runSpeed} = this.state;
@@ -63,7 +71,8 @@ class App extends Component {
         <ControlPanel
           generatorCounter={generatorCounter}
           isRunning={isRunning}
-          handleRunClick={this.handleRunClick}/>
+          handleRunClick={this.handleRunClick}
+          handleClearBoard={this.handleClearBoard}/>
         <Board board={board}/>
       </div>
     );

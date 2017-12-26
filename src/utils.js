@@ -1,19 +1,19 @@
 //Create a row with specified num of cell, randomly assigned 0 or 1
-export const createRow = cellNum => {
+export const createRow = (cellNum, mode) => {
   const arr = [];
   for (let i = 0; i < cellNum; i++) {
-    let randomZeroOrOne = Math.round(Math.random());
-    arr.push(randomZeroOrOne)
+    let value = mode === 'random' ? Math.round(Math.random()) : 0;
+    arr.push(value)
   }
   return arr;
 }
 
 
 //Create a table with specified num of rows and cells per rows
-export const createTableArr = (cellsPerRow, numberOfRows) => {
+export const createTableArr = (cellsPerRow, numberOfRows, mode) => {
   let output = []
   for (let i = 0; i < numberOfRows; i++) {
-    output.push(createRow(cellsPerRow))
+    output.push(createRow(cellsPerRow, mode))
   }
 
   return output;
